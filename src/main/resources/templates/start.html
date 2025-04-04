@@ -4,8 +4,15 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1>Welcome to Index PAGE!</h1>
+<h1>Welcome to START PAGE!</h1>
 
+<form th:method="GET" th:action="@{/admin/users}">
+    <input type="submit" value="ADMIN"/>
+</form>
+<br>
+<form th:method="GET" th:action="@{/user/profile}">
+    <input type="submit" value="USER"/>
+</form>
 
 </body>
 </html>

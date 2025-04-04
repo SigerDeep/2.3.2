@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add user</title>
+</head>
+<body>
+    <h1>Add user</h1>
+    <hr>
+    <form th:method="POST" th:action="@{/admin/users}" th:object="${user}" >
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name"/>
+
+        <br>
+
+        <label for="surname">Surname</label>
+        <input type="text" th:field="*{surname}" id="surname"/>
+        <dir th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">error</dir>
+        <br>
+        <label for="username">Username</label>
+        <input type="text" th:field="*{username}" id="username"/>
+        <dir th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</dir>
+        <br>
+        <label for="email">Email</label>
+        <input type="text" th:field="*{email}" id="email"/>
+        <dir th:if="${#fields.hasErrors('email')}" th:errors="*{email}">error</dir>
+        <br>
+        <label for="password">password</label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <dir th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</dir>
+        <br>
+        <label>Roles:</label>
+        <br>
+        <div th:each="role : ${allRoles}">
+            <label>
+                <input type="checkbox"
+                       th:value="${role.id}"
+                       th:field="*{roles}" /> <!-- IMPORTANT: field bound to Set<Role> -->
+                <span th:text="${role.name}"></span>
+            </label><br/>
+        </div>
+
+        <input type="submit" value="Add user"/>
+    </form>
+
+    <form th:method="GET" th:action="@{/admin/users}">
+        <br>
+        <input type="submit" value="Back to users"/>
+    </form>
+
+    <form th:method="POST" th:action="@{/logout}">
+        <input type="submit" value="Logout"/>
+    </form>
+
+    <br>
+    <form th:method="GET" th:action="@{/}">
+        <input type="submit" value="TO START PAGE"/>
+    </form>
+
+</body>
+</html>

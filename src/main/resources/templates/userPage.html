@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USER</title>
+</head>
+<body>
+<h1>User page</h1>
+<hr>
+<p th:text="USER">value</p>
+
+<p th:text="${user.getId()}">value</p>
+<p th:text="${user.getName()}">value</p>
+<p th:text="${user.getSurname()}">value</p>
+<p th:text="${user.getUsername()}">value</p>
+<p th:text="${user.getEmail()}">value</p>
+<p th:text="${user.getRolesString()}">value</p>
+
+
+<form th:method="GET" th:action="@{/admin/users/{id}/edit(id=${user.getId()})}">
+    <br>
+    <input type="submit" value="Update user"/>
+</form>
+
+<form th:method="DELETE" th:action="@{/admin/users/{id}(id=${user.getId()})}">
+    <br>
+    <input type="submit" value="Delete user"/>
+</form>
+
+<form th:method="GET" th:action="@{/admin/users}">
+    <br>
+    <input type="submit" value="Back to users"/>
+</form>
+
+<form th:method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+
+<br>
+<form th:method="GET" th:action="@{/}">
+    <input type="submit" value="TO START PAGE"/>
+</form>
+
+</body>
+</html>

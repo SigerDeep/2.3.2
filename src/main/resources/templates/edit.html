@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
+</head>
+<body>
+    <h1>Update user</h1>
+    <hr>
+    <form th:method="PATCH" th:action="@{/admin/users/{id}(id=${user.getId()})}" th:object="${user}">
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name"/>
+
+        <br>
+        <label for="surname">Surname</label>
+        <input type="text" th:field="*{surname}" id="surname"/>
+
+        <br>
+        <label for="username">Username</label>
+        <input type="text" th:field="*{username}" id="username"/>
+
+        <br>
+        <label for="email">Email</label>
+        <input type="text" th:field="*{email}" id="email"/>
+
+        <br>
+        <label for="password">Password</label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <br>
+        <label>Roles:</label><br>
+        <div th:each="role : ${allRoles}">
+            <label>
+                <input type="checkbox"
+                       th:value="${role.id}"
+                       th:field="*{roles}" /> <!-- IMPORTANT: field bound to Set<Role> -->
+                <span th:text="${role.name}"></span>
+            </label><br/>
+        </div>
+
+        <br>
+        <input type="submit" value="Update user"/>
+        <br>
+
+    </form>
+
+    <form th:method="GET" th:action="@{/admin/users}">
+        <input type="submit" value="Back to users"/>
+    </form>
+
+    <form th:method="POST" th:action="@{/logout}">
+        <input type="submit" value="Logout"/>
+    </form>
+
+    <br>
+    <form th:method="GET" th:action="@{/}">
+        <input type="submit" value="TO START PAGE"/>
+    </form>
+</body>
+</html>
